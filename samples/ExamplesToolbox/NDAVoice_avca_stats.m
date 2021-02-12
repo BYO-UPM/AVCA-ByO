@@ -1,13 +1,10 @@
-clear variables
-close all
-clc
+function mFeatures=NDAVoice_avca_stats(sFile)
+% Calculates the complexity features statistics of the input audio file
+% (sFile)
 
-addpath(genpath('../../'))
-addpath(genpath('../../../libs'))
+[vSignal, iFs]  = audioread( sFile );
+vSignal=vSignal/max(abs(vSignal)); % Normalization
 
-sDir = '../../Audios';
-[vSignalNorm, iFs]  = audioread( fullfile( sDir, 'asra.wav' ) );
-vSignalPath  = audioread( fullfile( sDir, 'cgra.wav' ) );
 
 %% Parameters
 iFrame    = ceil( 40e-3*iFs );
@@ -31,7 +28,7 @@ iNumVecinos = 5;  % Number of nearest neighbors to compute
 
 %% Norm
 % Use the voicebox toolbox
-mSignal = enframe( vSignalNorm, hamming( iFrame ), iSolape );
+mSignal = enframe( vSignal, hamming( iFrame ), iSolape );
 mCor = size( mSignal, 1 );
 mLLE = size( mSignal, 1 );
 mHurst = size( mSignal, 1 );
@@ -39,6 +36,7 @@ mDFA   = size( mSignal, 1 );
 mRPDE  = size( mSignal, 1 );
 mPE      = size( mSignal, 1 );
 mMarkEnt = size( mSignal, 1 );
+
 
 for j=1:size( mSignal, 1 )
     
@@ -55,15 +53,7 @@ for j=1:size( mSignal, 1 )
 
     iCont = 0;  %To ensure a non-zero estimate
     iDCor = 0;
-
-s = mAtractor;
-n = 1:100;
-range = 10;
-past = 100;
-dbstop in buggy
-   iDCor = takens_estimator( s, n, range, past);
     while iDCor==0 && iCont <3
-
         iDCor = takens_estimator( mAtractor, 1:length( mAtractor ), iRelRange, (iCont+1)* iExclude );
         iCont = iCont+1;
     end    
@@ -99,3 +89,7 @@ dbstop in buggy
     Entropies = Markov_Entropies( vFrame, dim, tau, rParam, 'MHR' ); 
     mMarkEnt(j) = Entropies.OriginalDim.EhmmrN;
 end
+
+mFeatures=[mean(mCor), std(mCor), mean(mLLE),std(mLLE), mean(mHurst), ...
+    std(mHurst), mean(mDFA), std(mDFA), mean(mRPDE), std(mRPDE), ...
+    mean(mPE), std(mPE), mean(mMarkEnt), std(mMarkEnt)];

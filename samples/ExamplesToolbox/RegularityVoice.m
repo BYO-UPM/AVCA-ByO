@@ -2,14 +2,17 @@ clear variables
 close all
 clc
 
-%addpath(genpath('../../'))
-%addpath(genpath('../../../libs'))
+addpath(genpath('../../'))
+addpath(genpath('../../../libs'))
 
 sDir = '../../Audios';
 [vSignalNorm, iFs]  = audioread( fullfile( sDir, 'asra.wav' ) );
 vSignalPath  = audioread( fullfile( sDir, 'cgra.wav' ) );
+<<<<<<< HEAD
 
 
+=======
+>>>>>>> parent of 46a192f (New functions to obtain feature statistics)
 
 %% Parameters
 iFrame    = ceil( 40e-3*iFs ); 

@@ -2,11 +2,12 @@ clear variables
 close all
 clc
 
-%addpath( genpath( '../src' ) )
-%addpath( genpath( '../External Toolboxes' ) )
+addpath( genpath( '../src' ) )
+addpath( genpath( '../External Toolboxes' ) )
 
 sDir = '../Audios';
 
+<<<<<<< HEAD
 sFile1='asra.wav';
 sFile2='cgra.wav';
 
@@ -14,9 +15,12 @@ sFile2='cgra.wav';
 vSignalPath  = audioread( sFile2 );
 
 %[vSignalNorm, iFs]  = audioread( fullfile( sDir, 'asra.wav' ) );
+=======
+[vSignalNorm, iFs]  = audioread( fullfile( sDir, 'asra.wav' ) );
+>>>>>>> parent of 46a192f (New functions to obtain feature statistics)
 vSignalNorm = normalize( vSignalNorm, 'zscore' );
 
-%vSignalPath  = audioread( fullfile( sDir, 'cgra.wav' ) );
+vSignalPath  = audioread( fullfile( sDir, 'cgra.wav' ) );
 vSignalPath = normalize( vSignalPath, 'zscore' );
 
 %% Parameters

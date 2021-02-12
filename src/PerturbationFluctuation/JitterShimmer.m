@@ -25,7 +25,7 @@ iLongitud  = length( vSignal );
 
 % For the calculation of the disturbances and tremor some information is needed that
 % is obtained from the pitch analysis
-[vPPS, vPAS] = ParamPitch( vSignal, iFs, 1, iLongitud, 0 );
+[vPPS, vPAS] = ParamPitch( vSignal, iFs, 1, iLongitud, 1 );
 
 %% Pitch perturbation measures: jita, jitt, RAP, PPQ, sPPQ.
 % rJitta:   absolute value in microseconds
@@ -43,10 +43,28 @@ vJitter = [ rJitta, rJitt, rRAP, rPPQ, rSPPQ ];
 %% Amplitude perturbation measures: shima, shim, APQ, sAPQ.
 % rShdB:     absolute shimmer in dB
 % rShim:     relative shimmer in %
-[rShdB, rShim]=shimmer( vPAS );
+try
+    [rShdB, rShim]=shimmer( vPAS );
+catch
+    warning('rShdB and rShim not calculated')
+    rShdB = NaN;
+    rShim = NaN;
+end
 % rAPQ:     amplitude perturbation quotient % (APQ).
+
+try
 rAPQ = apq( vPAS );
+catch
+    warning('rAPQ not calculated')
+    rAPQ=NaN;
+end
 % rSAPQ:    amplitude perturbation quotient in % (sAPQ).
-rSAPQ = sapq( vPAS, 55 );
+
+try
+    rSAPQ = sapq( vPAS, 55 );
+catch
+    warning('rSAPQ not calculated')
+    rSAPQ = NaN;
+end
 
 vShimmer = [ rShdB, rShim, rAPQ, rSAPQ ];
