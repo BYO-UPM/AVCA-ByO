@@ -7,8 +7,8 @@ clc
 
 sDir = '../Audios';
 
-sFile1='VA1lbuairgo52M1606161813.wav';
-sFile2='PD_A1_0009.wav';
+sFile1='asra.wav';
+sFile2='cgra.wav';
 
 [vSignalNorm, iFs]  = audioread( sFile1 );
 vSignalPath  = audioread( sFile2 );
