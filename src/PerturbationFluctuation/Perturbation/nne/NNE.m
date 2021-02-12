@@ -94,7 +94,7 @@ for n=0:iNumPuntos-1
 
         % Calculate pitch using Boyanov's method. Using ToAnt=0 for a start
         iFoi=PitchBoyanov( vFrame, iFs, 0 );
-        if iFoi~=0 % Si el segmento es sonoro se calcula su NNE
+        if iFoi~=0 && ~isnan(iFoi) % Si el segmento es sonoro se calcula su NNE
             vFrame=vFrame-mean( vFrame );
             vFrame=vFrame.*hamming( iTamVent );
 
