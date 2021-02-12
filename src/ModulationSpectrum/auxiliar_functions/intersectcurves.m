@@ -20,14 +20,9 @@ if ~isempty(ind)
     y_intersect=Y1(ind);
 else
     ind=find(vDiff<0);
-    if ~isempty(ind)
-        ind=ind(1);
-        x_intersect=X(ind-1)+(X(ind)-X(ind-1))/2;
-        y_intersect=Y1(ind-1)+abs((Y1(ind)-Y1(ind-1))/2);
-    else
-        x_intersect=NaN;
-        y_intersect=NaN;
-    end
+    ind=ind(1);
+    x_intersect=X(ind-1)+(X(ind)-X(ind-1))/2;
+    y_intersect=Y1(ind-1)+abs((Y1(ind)-Y1(ind-1))/2);
     
 end
 

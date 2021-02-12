@@ -80,8 +80,6 @@ if Rmax>iVoicedThreshold
       To=ds(1);
       if To~=0
          fo=iFs/To;
-      else
-         error('To=0')
       end
       
    else
@@ -101,11 +99,7 @@ if Rmax>iVoicedThreshold
          To=ds(1);
          if To~=0
             fo=iFs/To;
-         else
-             error('To=0')
          end
-      else
-          fo=0;
       end
    end
    
@@ -113,4 +107,3 @@ else
     % Otherwise the segment is unvoiced and f0 = 0 
     fo=0;
 end
-

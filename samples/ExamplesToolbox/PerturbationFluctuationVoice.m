@@ -2,8 +2,8 @@ clear variables
 close all
 clc
 
-%addpath(genpath('../../'))
-%addpath(genpath('../../../libs'))
+addpath(genpath('../../'))
+addpath(genpath('../../../libs'))
 
 sDir = '../../Audios';
 [vSignalNorm, iFs]  = audioread( fullfile( sDir, 'asra.wav' ) );
