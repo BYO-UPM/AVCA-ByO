@@ -2,21 +2,12 @@ clear variables
 close all
 clc
 
-<<<<<<< HEAD
 %addpath(genpath('../../'))
 %addpath(genpath('../../../libs'))
-=======
-addpath(genpath('../../'))
-addpath(genpath('../../../libs'))
->>>>>>> parent of 46a192f (New functions to obtain feature statistics)
 
 sDir = '../../Audios';
 [vSignalNorm, iFs]  = audioread( fullfile( sDir, 'asra.wav' ) );
 vSignalPath  = audioread( fullfile( sDir, 'cgra.wav' ) );
-<<<<<<< HEAD
-
-=======
->>>>>>> parent of 46a192f (New functions to obtain feature statistics)
 
 %% Parameters
 sTipo    = 'M';
